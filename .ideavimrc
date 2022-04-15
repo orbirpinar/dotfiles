@@ -1,0 +1,73 @@
+set number relativenumber
+set idearefactormode=keep
+set ideajoin
+set clipboard+=unnamed
+set incsearch
+
+let mapleader = " "
+
+" These create newlines like o and O but stay in normal mode
+nmap zj o<Esc>k
+nmap zk O<Esc>j
+
+imap jj <Esc>
+
+
+" system clipboard
+vmap <leader>y "+y
+vmap <leader>d "+d
+nmap <leader>y "+yy
+nmap <leader>p "+p
+nmap <leader>P "+P
+vmap <leader>p "+p
+vmap <leader>P "+P
+
+" actions
+nmap <leader>1 <action>(PreviousTab)
+nmap <leader>2 <action>(NextTab)
+nmap <leader>bd <action>(CloseEditor)
+nmap <leader>i <action>(Generate)
+nmap <leader>m <action>(Git.Menu)
+nmap <leader>s <action>(QuickChangeScheme)
+nmap <leader>/ <action>(ShowErrorDescription)
+nmap <leader>e <action>(GotoNextError)
+nmap <leader>f <action>(ToggleFullScreen)
+nmap <leader>ad <action>(ActivateDebugToolWindow)<CR>
+nmap <leader>ar <action>(ActivateRunToolWindow)<CR>
+nmap <leader>ra <action>(RunnerActions)<CR>
+nmap <leader>g <action>(CommittedChangesToolbar)<CR>
+
+
+" debugger 
+nmap <leader>bra <action>(Debugger.RemoveAllBreakpoints)<CR>
+nmap <leader>brf <action>(Debugger.RemoveAllBreakpointsInFile)<CR>
+
+
+nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
+nnoremap <c-\> :action SplitVertically<CR>
+nnoremap <c--> :action SplitHorizontally<CR>
+nnoremap <c-t> :action  ActivateTerminalToolWindow<CR>
+
+nnoremap <leader><leader> <C-Tab>
+
+" Refactoring
+nmap <leader>rr :action RenameElement<cr>
+nmap <leader>rg :action Generate<cr>
+vmap T :action Refactorings.QuickListPopupAction<cr>
+
+" VCS operations
+nmap <leader>yy :action Vcs.Show.Local.Changes<cr>
+nmap <leader>yp :action Vcs.QuickListPopupAction<cr>
+nmap <leader>ya :action Annotate<cr>
+nmap <leader>yl :action Vcs.Show.Log<cr>
+nmap <leader>yd :action Compare.LastVersion<cr>
+
+let g:NERDTreeMapActivateNode='l'
+let g:NERDTreeMapJumpParent='h'
+
+
+Plug 'tpope/vim-surround'
+
+
+
+
