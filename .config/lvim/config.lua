@@ -1,6 +1,5 @@
 --[[
 lvim is the global options object
-
 Linters should be
 filled in as strings with either
 a global executable or a path to
@@ -10,14 +9,27 @@ an executable
 
 -- general
 lvim.log.level = "warn"
-lvim.format_on_save = true
-lvim.colorscheme = "nord"
+lvim.format_on_save = false
+lvim.colorscheme = "onedark"
 lvim.transparent_window = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+vim.opt.clipboard = "unnamedplus"
+
+-- system clipboard
+lvim.keys.visual_mode["<leader>y"] = '"+y'
+lvim.keys.normal_mode["\"+d"] = "<leader>d"
+lvim.keys.normal_mode["\"+yy"] = "<leader>y"
+lvim.keys.normal_mode["\"+p"] = "<leader>p"
+lvim.keys.normal_mode["\"+P"] = "<leader>P"
+lvim.keys.normal_mode["\"+y"] = "<leader>y"
+lvim.keys.normal_mode["\"+y"] = "<leader>y"
+
+lvim.keys.normal_mode["|"] = ":vsplit<CR>"
+lvim.keys.normal_mode["-"] = ":split<CR>"
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = false
 -- edit a default keymapping
@@ -149,11 +161,11 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- }
 
 -- Additional Plugins
- lvim.plugins = {
-    {"navarasu/onedark.nvim"},
-     {"folke/tokyonight.nvim"},
-     {"arcticicestudio/nord-vim"}
- }
+lvim.plugins = {
+  { "navarasu/onedark.nvim" },
+  { "folke/tokyonight.nvim" },
+  { "arcticicestudio/nord-vim" }
+}
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- lvim.autocommands.custom_groups = {

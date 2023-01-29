@@ -4,6 +4,10 @@ set $alt Mod1
 
 exec_always "feh --randomize --bg-fill ~/Pictures/Walpapers/*"  
 
+# exec_always "xrandr --auto && xrandr --output eDP --off"
+
+exec_always compton --config ~/.config/compton/config
+
 bar {
 
   colors {
@@ -19,8 +23,8 @@ bar {
   }
   font pango:DejaVu Sans Mono, FontAwesome 10
     position top
-    status_command ~/.local/bin/bumblebee-status -m cpu memory battery time \
-      pasink pasource -p time.format="%H:%M" -t nord-powerline
+    status_command ~/.local/bin/bumblebee-status -m cpu memory battery  brightness datetime\
+      pasink pasource -p datetime.format="%d %m %Y - %H:%M" -t iceberg-rainbow
 }
 
 set $inner 15
@@ -50,6 +54,7 @@ exec --no-startup-id compton -b
 #bindsym $super+Return exec i3-sensible-terminal
 bindsym $super+Return exec alacritty
 
+
 # start dmenu (a program launcher)
 bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'JetBrainsMono Nerd Font size=8'"
 bindsym $super+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
@@ -57,23 +62,28 @@ bindsym $super+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show dru
 # common apps keybinds
 bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'viewnior ~/$f'
 bindsym $super+l exec i3lock -i ~/.wallpaper.jpg
-bindsym $super+Shift+w exec google-chrome
+bindsym $super+Shift+w exec brave-browser
 bindsym $super+Shift+f exec thunar;workspace 3;focus
 bindsym $super+Shift+g exec geany
+
+# fn key keybindigs
+
 
 # off dual screen
 exec_always "xrandr --output eDP-1 --off"
 
-#change volume
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
-bindsym XF86AudioMute exec amixer set Master toggle
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
-# music control
-bindsym XF86AudioNext exec mpc next
-bindsym XF86AudioPrev exec mpc prev
-bindsym XF86AudioPlay exec mpc toggle
-bindsym XF86AudioStop exec mpc stop
+# Screen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20
+
+# Screen brightness
+bindsym $super+i exec brightnessctl set 100%
+
 
 # kill focused window
 bindsym $super+c kill
@@ -123,6 +133,7 @@ bindsym $super+5 workspace 5
 bindsym $super+6 workspace 6
 bindsym $super+7 workspace 7
 bindsym $super+8 workspace 8
+bindsym $super+9 workspace 9
 
 # move focused container to workspace
 bindsym $super+Shift+1 move container to workspace $workspace1
@@ -133,6 +144,7 @@ bindsym $super+Shift+5 move container to workspace 5
 bindsym $super+Shift+6 move container to workspace 6
 bindsym $super+Shift+7 move container to workspace 7
 bindsym $super+Shift+8 move container to workspace 8
+bindsym $super+Shift+9 move container to workspace 9
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $super+Shift+r restart
@@ -165,12 +177,11 @@ mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
 }
 
 bindsym $super+x mode "exit: [l]ogout, [r]eboot, [s]hutdown"
-
 # panel
 #bar {
 #        colors {
 #        background #2f343f
-#        statusline #2f343f
+#        statusline 2f343f
 #        separator #4b5262
 #
 #        # colour of border, background, and text

@@ -6,8 +6,10 @@ export ZSH="/home/orhan/.oh-my-zsh"
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=' -p /usr/bin/python3 '
-export PROJECT_HOME=$HOME/django/django-locallibrary-tutorial/
-source /usr/local/bin/virtualenvwrapper.sh
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+export PATH=$PATH:$HOME/dotnet
+export DOTNET_ROOT=$HOME/dotnet
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -101,17 +103,34 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias zshconfig="lvim ~/.zshrc"
+alias ohmyzsh="lvim ~/.oh-my-zsh"
 alias szsh="source ~/.zshrc"
 alias idea="/opt/idea/bin/idea.sh"
 alias dps="docker ps"
 alias dpsa="docker ps -a"
 alias rider="/home/orhan/Downloads/Rider/jetbrains/bin/rider.sh"
 alias phpstorm="/home/orhan/Downloads/PhpStorm-213.6461.83/bin/phpstorm.sh"
+alias getbitwarden="sh ~/scripts/getbitwarden.sh"
+
+alias olaptop="sh ~/scripts/arrange_only_laptop_screen.sh"
+alias omon="sh ~/scripts/arrange_only_monitor.sh"
+alias dual="sh ~/scripts/arrange_dual_screen.sh"
+alias getmyip="curl ident.me"
+alias vpnup="nmcli con up pinsoft_new"
+alias vpndown="nmcli con down pinsoft_new"
+alias vpnkzup="nmcli con up KZ_Aura_VPN"
+alias vpnkzdown="nmcli con down KZ_Aura_VPN"
+alias generatetc="python3 ~/Personal_Projects/tc_no_generator/main.py"
+alias namazvakti="python3 ~/Personal_Projects/namazvakti/main.py"
+
 
 alias dotconfig="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 alias lzd='lazydocker'
 alias dotconfig='/usr/bin/git --git-dir=/home/orhan/.cfg/ --work-tree=/home/orhan'
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

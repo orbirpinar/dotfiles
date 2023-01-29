@@ -13,14 +13,21 @@ nmap zk O<Esc>j
 imap jj <Esc>
 
 
+
+
+
 " system clipboard
 vmap <leader>y "+y
 vmap <leader>d "+d
 nmap <leader>y "+yy
-nmap <leader>p "+p
 nmap <leader>P "+P
 vmap <leader>p "+p
 vmap <leader>P "+P
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
+" replace currently selected text with default register
+" without yanking it
+vmap <leader>p "_dP
 
 " actions
 nmap <leader>1 <action>(PreviousTab)
@@ -30,13 +37,17 @@ nmap <leader>i <action>(Generate)
 nmap <leader>m <action>(Git.Menu)
 nmap <leader>s <action>(QuickChangeScheme)
 nmap <leader>/ <action>(ShowErrorDescription)
-nmap <leader>e <action>(GotoNextError)
 nmap <leader>f <action>(ToggleFullScreen)
-nmap <leader>ad <action>(ActivateDebugToolWindow)<CR>
-nmap <leader>ar <action>(ActivateRunToolWindow)<CR>
+nmap <leader>d <action>(ActivateDebugToolWindow)<CR>
+nmap <leader>r <action>(ActivateRunToolWindow)<CR>
 nmap <leader>ra <action>(RunnerActions)<CR>
 nmap <leader>g <action>(CommittedChangesToolbar)<CR>
+nmap <leader>e <action>(NERDTreeMapMenu)
+nmap <leader>f <action>(GotoFile)<CR> 
 
+
+nnoremap <Leader>q :action CloseContent<CR>
+nnoremap <Leader>qa :action CloseAllEditors<CR>
 
 " debugger 
 nmap <leader>bra <action>(Debugger.RemoveAllBreakpoints)<CR>
@@ -47,6 +58,7 @@ nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
 nnoremap <c-\> :action SplitVertically<CR>
 nnoremap <c--> :action SplitHorizontally<CR>
 nnoremap <c-t> :action  ActivateTerminalToolWindow<CR>
+nnoremap <c-]> :action ToggleLineBreakpoint<CR>
 
 nnoremap <leader><leader> <C-Tab>
 
@@ -67,6 +79,9 @@ let g:NERDTreeMapJumpParent='h'
 
 
 Plug 'tpope/vim-surround'
+Plug 'preservim/nerdtree'
+
+map <leader>e :NERDTree<CR>
 
 
 
